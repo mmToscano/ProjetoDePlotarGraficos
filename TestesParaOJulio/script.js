@@ -6,11 +6,11 @@ const myChart = new Chart(ctx, {
     data: {
         datasets: [{
             label: 'Test',
-            data: [{x: -20, y: null}, {x: -10, y: null}, {x: 0, y: null}, {x: 10, y: null}, {x: 20, y: null}],
+            data: [],
             backgroundColor: 'black',
             borderColor: 'yellow',
             borderWidth: 1,
-            pointRadius: 7,
+            pointRadius: 2,
             pointHoverRadius: 11,
             showLine: true
 
@@ -32,21 +32,32 @@ const myChart = new Chart(ctx, {
 //myChart.data.datasets[0].data[2].x valor do x do primeiro objeto no primeiro gráfico
 //myChart.data.datasets[0].data[2].y valor do y do primeiro objeto no primeiro gráfico
 //myChart.data.datasets[0].data[0] = {x: 10, y: 20}; Adiciona essa informação no gráfico (É preciso dar o myChart.update() depois)
-dataSize = myChart.data.datasets[0].data.length;
+//myChart.data.datasets[0].data
 
-function criarValoresNoGráfico(quantidade){
+function criarValoresNoGrafico(quantidade){
 
-    object = {x: -20, y: null};
+    object = {x: null, y: null};
 
     for(count = 0; count < quantidade; count++){
-
+        myChart.data.datasets[0].data[count] = object;
     }
+
+    let valorDoX = -50;
+    for(count = 0; count < quantidade; count ++, valorDoX+= 5){
+        myChart.data.datasets[0].data[count] = {x: valorDoX, y: valorDoX * valorDoX};
+    }
+    
+    myChart.update();
+    console.log(myChart.data.datasets[0].data);
 }
 
-function rodarFormula(){
+
+function rodarPrimeiraFormula(){
+    criarValoresNoGráfico(21);
+    dataSize = myChart.data.datasets[0].data.length;
+
     for(count = 0; count < dataSize; count++){
-        xValue = myChart.data.datasets[0].data[count].x;
-        myChart.data.datasets[0].data[count].y = xValue * xValue;
+        myChart.data.datasets[0].data[count].y = valorDoX * valorDoX;
     }
     myChart.update();
 }
