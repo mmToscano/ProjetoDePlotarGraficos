@@ -5,12 +5,12 @@ const myChart = new Chart(ctx, {
 
     data: {
         datasets: [{
-            label: 'Test',
+            label: 'Diferentes gráficos',
             data: [],
-            backgroundColor: 'black',
-            borderColor: 'yellow',
-            borderWidth: 1,
-            pointRadius: 2,
+            backgroundColor: 'white',
+            borderColor: 'rgb(64, 31, 211)',
+            borderWidth: 3,
+            pointRadius: 5,
             pointHoverRadius: 11,
             showLine: true
 
@@ -34,7 +34,12 @@ const myChart = new Chart(ctx, {
 //myChart.data.datasets[0].data[0] = {x: 10, y: 20}; Adiciona essa informação no gráfico (É preciso dar o myChart.update() depois)
 //myChart.data.datasets[0].data
 
-function criarValoresNoGrafico(quantidade){
+
+function rodarPrimeiraFormula(quantidade){
+    myChart.data.datasets[0].data = null;
+    myChart.update();
+
+    quantidade = 21;
 
     object = {x: null, y: null};
 
@@ -48,18 +53,27 @@ function criarValoresNoGrafico(quantidade){
     }
     
     myChart.update();
-    console.log(myChart.data.datasets[0].data);
 }
 
+function rodarSegundaFormula(quantidade){
+    myChart.data.datasets[0].data = null;
+    myChart.update();
 
-function rodarPrimeiraFormula(){
-    criarValoresNoGráfico(21);
-    dataSize = myChart.data.datasets[0].data.length;
+    quantidade = 21;
 
-    for(count = 0; count < dataSize; count++){
-        myChart.data.datasets[0].data[count].y = valorDoX * valorDoX;
+    object = {x: null, y: null};
+
+    for(count = 0; count < quantidade; count++){
+        myChart.data.datasets[0].data[count] = object;
     }
+
+    let valorDoX = -50;
+    for(count = 0; count < quantidade; count ++, valorDoX+= 5){
+        myChart.data.datasets[0].data[count] = {x: valorDoX, y: valorDoX * valorDoX * valorDoX};
+    }
+    
     myChart.update();
 }
+
 
 
