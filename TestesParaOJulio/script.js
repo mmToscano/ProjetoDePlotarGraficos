@@ -9,9 +9,9 @@ const myChart = new Chart(ctx, {
             data: [],
             backgroundColor: 'white',
             borderColor: 'rgb(64, 31, 211)',
-            borderWidth: 3,
-            pointRadius: 5,
-            pointHoverRadius: 11,
+            borderWidth: 1,
+            pointRadius: 0.1,
+            pointHoverRadius: 7,
             showLine: true
 
         }]
@@ -39,7 +39,7 @@ function rodarPrimeiraFormula(quantidade){
     myChart.data.datasets[0].data = null;
     myChart.update();
 
-    quantidade = 21;
+    quantidade = 81;
 
     object = {x: null, y: null};
 
@@ -47,8 +47,8 @@ function rodarPrimeiraFormula(quantidade){
         myChart.data.datasets[0].data[count] = object;
     }
 
-    let valorDoX = -50;
-    for(count = 0; count < quantidade; count ++, valorDoX+= 5){
+    let valorDoX = -40;
+    for(count = 0; count < quantidade; count ++, valorDoX+= 1){
         myChart.data.datasets[0].data[count] = {x: valorDoX, y: valorDoX * valorDoX};
     }
     
@@ -59,7 +59,7 @@ function rodarSegundaFormula(quantidade){
     myChart.data.datasets[0].data = null;
     myChart.update();
 
-    quantidade = 21;
+    quantidade = 81;
 
     object = {x: null, y: null};
 
@@ -67,9 +67,69 @@ function rodarSegundaFormula(quantidade){
         myChart.data.datasets[0].data[count] = object;
     }
 
-    let valorDoX = -50;
-    for(count = 0; count < quantidade; count ++, valorDoX+= 5){
+    let valorDoX = -40;
+    for(count = 0; count < quantidade; count ++, valorDoX+= 1){
         myChart.data.datasets[0].data[count] = {x: valorDoX, y: valorDoX * valorDoX * valorDoX};
+    }
+    
+    myChart.update();
+}
+
+function rodarTerceiraFormula(quantidade){
+    myChart.data.datasets[0].data = null;
+    myChart.update();
+
+    quantidade = 81;
+
+    object = {x: null, y: null};
+
+    for(count = 0; count < quantidade; count++){
+        myChart.data.datasets[0].data[count] = object;
+    }
+
+    let valorDoX = -10;
+    for(count = 0; count < quantidade; count ++, valorDoX+= 0.25){
+        myChart.data.datasets[0].data[count] = {x: valorDoX, y: (Math.exp((valorDoX * valorDoX) * -1)) * Math.sin(Math.PI * Math.pow(valorDoX, 3))};
+    }
+    
+    myChart.update();
+}
+
+function rodarQuartaFormula(quantidade){
+    myChart.data.datasets[0].data = null;
+    myChart.update();
+
+    quantidade = 81;
+
+    object = {x: null, y: null};
+
+    for(count = 0; count < quantidade; count++){
+        myChart.data.datasets[0].data[count] = object;
+    }
+
+    let valorDoX = -10;
+    for(count = 0; count < quantidade; count ++, valorDoX+= 0.25){
+        myChart.data.datasets[0].data[count] = {x: valorDoX, y: Math.sin(valorDoX)};
+    }
+    
+    myChart.update();
+}
+
+function rodarQuintaFormula(quantidade){
+    myChart.data.datasets[0].data = null;
+    myChart.update();
+
+    quantidade = 161;
+
+    object = {x: null, y: null};
+
+    for(count = 0; count < quantidade; count++){
+        myChart.data.datasets[0].data[count] = object;
+    }
+
+    let valorDoX = -20;
+    for(count = 0; count < quantidade; count ++, valorDoX+= 0.25){
+        myChart.data.datasets[0].data[count] = {x: valorDoX, y: Math.sin(2 * Math.sin(2 * Math.sin(2 * Math.sin(valorDoX))))};
     }
     
     myChart.update();
@@ -77,3 +137,7 @@ function rodarSegundaFormula(quantidade){
 
 
 
+//Gráficos legais:
+//{x: valorDoX, y: Math.sin(valorDoX)}
+//{x: valorDoX, y: Math.sin(2 * Math.sin(2 * Math.sin(2 * Math.sin(valorDoX))))}
+//{x: valorDoX, y: (Math.exp((valorDoX * valorDoX) * -1)) * Math.sin(Math.PI * Math.pow(valorDoX, 3))}
